@@ -1,0 +1,142 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amsthm,amssymb,graphicx,titling,mathrsfs,tikz,tikz-cd}
+\usepackage{mathtools}
+\usepackage{mleftright}
+\usepackage{tikz-cd}
+\usepackage{todonotes}
+\usepackage{color}
+\usepackage{stmaryrd}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!80!black},
+    citecolor={blue!80!black},
+    urlcolor={blue!80!black}
+}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  morekeywords={sage},            % if you want to add more keywords to the set
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,                     % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\usepackage[ruled,vlined]{algorithm2e}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\newcommand{\iso}{\cong}
+\newcommand{\op}{\operatorname}
+\newcommand{\normlin}{\trianglelefteq}
+\newcommand{\ideal}{\trianglelefteq}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\p}{\mathfrak{p}}
+
+\newcommand{\cat}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\cat{Set}}
+\newcommand{\Ring}{\cat{Ring}}
+\newcommand{\Top}{\cat{Top}}
+\newcommand{\Vect}{\cat{Vect}}
+
+\newcommand{\Hom}{\op{Hom}}
+\newcommand{\Obj}{\op{Obj}}
+\newcommand{\End}{\op{End}}
+\newcommand{\Aut}{\op{Aut}}
+\newcommand{\nrd}{\op{nrd}}
+\newcommand{\trd}{\op{trd}}
+\newcommand{\disc}{\op{disc}}
+\newcommand{\discrd}{\op{discrd}}
+\newcommand{\chr}{\op{char}}
+\newcommand{\Frac}{\op{Frac}}
+\newcommand{\Pl}{\op{Pl}}
+\newcommand{\Ram}{\op{Ram}}
+\newcommand{\Cls}{\op{Cls}}
+\newcommand{\Gen}{\op{Gen}}
+\newcommand{\Typ}{\op{Typ}}
+\newcommand{\rk}{\op{rk}}
+
+\newcommand{\defeq}{\vcentcolon=}
+
+\setlength{\droptitle}{-7em}
+\title{CSIDH Paper}
+\author{Joel Laity}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
