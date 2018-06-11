@@ -134,11 +134,13 @@ We then choose \( n \in \N \) minimal such that \( 2^n > cN \) where \( c \) is 
     \frac{1}{\sqrt{2^{n}}} \sum_{x=0}^{2^n-1} \left( \ket{0}\ket{x}\ket{f(x \bmod{N})} + \ket{1}\ket{x}\ket{g(x \bmod{N})} \right).
 \]
 {
-\color{red} In the paper the sum is up to \( 2^n \) and the normalization is \( \frac{1}{2^{(n+1) / 2}} \) which has to be wrong.
+\color{red} In the paper the sum is up to \( 2^n \) and the normalization is \( \frac{1}{2^{(n+1) / 2}} \) which has to be wrong because the sum of the squares of the amplitudes is not 1.
+Also in the paper the second term is not in the scope of the sum which is then contradicted by later equations.
+I believe what I wrote is what they meant.
 }
 We then make a measurement of the output register, let's say the result of the measurement is \( d \). The input registers will be a superposition of states \( \ket{x} \) where \( x \) runs over all values such that \( f(x \bmod{N}) + g(x + \bmod{N}) = d\). If we assume that \( f+g : \Z / N\Z \to ?? \) is injective then we will get a state that looks like this
 \[
-    \frac{1}{\sqrt{2^n}}
+    \frac{1}{\sqrt{X}}
     \left(
     \underbrace{\ket{0}\ket{x_1} + \ket{1}\ket{x_2}}_{\text{noise}} +
     \underbrace{\sum_{j=0}^{\lfloor 2^n / N \rfloor }
@@ -149,11 +151,10 @@ We then make a measurement of the output register, let's say the result of the m
 {
 \color{red} The bound on the sum should be \( 2^n - 1 \).
 }
+Where \( X \) is the number of terms in the parentheses.
+We note that \( c \leq 2^n / N \leq 2c \) so \( 2+c \leq X \leq 2c \).
 Confusingly, in this equation \( x \) is a particular solution to \( f(x) + g(x) = d \), which for convenience is assumed to satisfy \( 0 \leq x < N \), while in the previous displayed equation it was in the scope of the sum.
-The values \( x_1 \) and \( x_2 \) are possible leftover values which satisy \( f(x_1) + g(x_2) = d \) but \( x_1 \) is in the interval \( cN \leq x_1 < 2^n  \) and \( x_2 = (x_1 + s) \bmod{2^n} \).
-{
-\color{red} Is the last statment true?.
-}
+The values \( x_1 \) and \( x_2 \) are possible leftover values which satisy \( f(x_1) + g(x_2) = d \) but \( x_1 \) is in the interval \( cN \leq x_1 < 2^n  \) and \( x_2 = (x_1 + s) \bmod{2^n} \) (or \( x_2 \) is in the interval \( cN \leq x_2 < 2^n  \) and \( x_1 = x_2 - s \)).
 It is possible there is no ``leftover'' solution \( x_1, x_2 \) in which case these terms won't appear.
 
 \begin{center}
@@ -166,25 +167,26 @@ It maps a quantum state
 \[
     \sum_{x=0}^{2^n-1} a(x)\ket{x} \mapsto \sum_{x=0}^{2^n-1} A(x)\ket{x}
 \]
-where \( a: \Z / 2^n \Z \to \C \) is a function and \( A : \Z / 2^n \Z \to \C\) is the DFT of \( a \).
+where \( a: \Z / 2^n \Z \to \C \) is a function of norm 1 and \( A : \Z / 2^n \Z \to \C\) is the DFT of \( a \).
 First we rearrange the above equation
 \[
-    \frac{1}{\sqrt{2^n}} \left(\ket{0}\left(\ket{x_1} + \sum_{j=0}^{\lfloor 2^n / N \rfloor }\ket{x + jN} \right) + \ket{1} \left(\ket{x_2} + \sum_{j=0}^{\lfloor 2^n / N \rfloor }\ket{x + jN + s}\right) \right) .
+    \frac{1}{\sqrt{X}} \left(\ket{0}\left(\ket{x_1} + \sum_{j=0}^{\lfloor 2^n / N \rfloor }\ket{x + jN} \right) + \ket{1} \left(\ket{x_2} + \sum_{j=0}^{\lfloor 2^n / N \rfloor }\ket{x + jN + s}\right) \right) .
 \]
 We apply the QFT over the second register we get
 \[
-    \frac{1}{2^n}\sum_{y = 0}^{2^n - 1} \left(  \left(\chi\left(\frac{x_1y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN)}{2^n}\right) \right) \ket{0}  +  \left( \chi\left(\frac{x_2y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN + s)}{2^n}\right)\right) \ket{1} \right)\ket{y} ,
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}\sum_{y = 0}^{2^n - 1} \left(  \left(\chi\left(\frac{x_1y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN)}{2^n}\right) \right) \ket{0}  +  \left( \chi\left(\frac{x_2y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN + s)}{2^n}\right)\right) \ket{1} \right)\ket{y} ,
 \]
 where \( \chi(x) = \exp(2\pi ix) \), \( i = \sqrt{-1} \).
-Note we assume the DFT has a normalization of \( 1 / \sqrt{2^n} \).
 Take a measurement on the second register and we get
 \[
-    \frac{1}{2^n}\left(\chi\left(\frac{x_1y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN)}{2^n}\right) \right) \ket{0}  +  \frac{1}{2^n}\left( \chi\left(\frac{x_2y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN + s)}{2^n}\right)\right) \ket{1} ,
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}\left(\chi\left(\frac{x_1y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN)}{2^n}\right) \right) \ket{0}  +  \frac{1}{2^n}\left( \chi\left(\frac{x_2y}{ 2^n}\right) + \sum_{j = 0}^{\lfloor 2^n / N \rfloor } \chi\left(\frac{y(x+jN + s)}{2^n}\right)\right) \ket{1} ,
 \]
 for some fixed \( y \).
+Provided \( 2^n / N \) is large enough the probability that we choose a particular \( y \) should depend only on the character sum, rather than the noise.
+In fact we will later show that for half of the \( y \in \Z / 2^n \Z \) the character sum is larger than \( \frac{2}{\pi} \)
 We regroup into ``noise'' and ``what we want'' again
 \[
-    \frac{1}{2^n}
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}
     \left(
     \chi\left(\frac{x_1y}{ 2^n}\right)\ket{0}
     + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1}
@@ -197,18 +199,18 @@ We regroup into ``noise'' and ``what we want'' again
 \]
 We factor out a common term and pull it outside the sum
 \[
-    \frac{1}{2^n} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0} + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1} + \chi\left(\frac{xy}{2^n}\right)\sum_{j = 0}^{\lfloor 2^n / N \rfloor } \left(\chi\left(\frac{yjN}{2^n}\right) \ket{0}  +    \chi\left(\frac{y(jN + s)}{2^n}\right)  \ket{1}\right)\right).
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0} + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1} + \chi\left(\frac{xy}{2^n}\right)\sum_{j = 0}^{\lfloor 2^n / N \rfloor } \left(\chi\left(\frac{yjN}{2^n}\right) \ket{0}  +    \chi\left(\frac{y(jN + s)}{2^n}\right)  \ket{1}\right)\right).
 \]
 We factor out a common term inside the sum
 \[
-    \frac{1}{2^n} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0} + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1} + \chi\left(\frac{xy}{2^n}\right)
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0} + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1} + \chi\left(\frac{xy}{2^n}\right)
     \sum_{j = 0}^{\lfloor 2^n / N \rfloor }
     \left(
         \chi\left(\frac{yjN}{2^n}\right) \left( \ket{0}  +    \chi\left(\frac{sy}{2^n}\right)  \ket{1} \right) \right)\right)
 \]
 and rearrange parentheses
 \[
-    \frac{1}{2^n} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0}
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}} \left(\chi\left(\frac{x_1y}{ 2^n}\right)\ket{0}
     + \chi\left(\frac{x_2y}{ 2^n}\right) \ket{1}
     + \chi\left(\frac{xy}{2^n}\right)
     \left(
@@ -233,15 +235,21 @@ We have
       & = \left | \frac{\sin(\pi \lceil 2^n / N \rceil yN / 2^{n} )}{\sin( \pi yN/2^{n})} \right|      \\
     \intertext{now \( |\sin(x)| > \frac{2}{\pi}|x| \) for \( -\pi / 2 \leq x \leq \pi / 2 \) and \( |\sin(x)| \leq |x| \) for all \( x \in \R \)} \\
       & \geq \left | \frac{\frac{2}{\pi} \pi \lceil 2^n / N \rceil yN / 2^{n} }{ \pi yN/2^{n}} \right| \\
-      & = \frac{2}{\pi} \lceil 2^n / N \rceil ,
+      & = \frac{2}{\pi} \lceil 2^n / N \rceil                                                          \\
+      & \geq \frac{2}{\pi} c,
 \end{align*}
-provided \(-\pi / 2 \leq  \pi \lceil 2^n / N \rceil yN / 2^{n} \bmod{2\pi}   \leq \pi / 2 \Leftrightarrow \left| \lceil 2^n / N \rceil yN\right| \bmod{2^n} \leq 2^n/2\).
-This will be true for half of the values of \( y \).
-We ignored the normalization factor in the above calculation so the final lower bound on the magnitude of the \( \left( \ket{0}  +    \chi\left(\frac{sy}{2^n}\right)  \ket{1} \right) \) term is
+where \( c \) was the constant we chose before so that \( 2^n > cN \).
+This inequality holds provided \(-\pi / 2 \leq  \pi \lceil 2^n / N \rceil yN / 2^{n} \bmod{2\pi}   \leq \pi / 2 \Leftrightarrow \left| \lceil 2^n / N \rceil yN\right| \bmod{2^n} \leq 2^n/2\), which is be true for half of the values of \( y \).
+Recall that we chose \( n \) so that \( n \) was minimal with \( 2^n > cN \) so the final lower bound is
 \[
-    \frac{1}{2^n}\frac{2}{\pi} \lceil 2^n / N \rceil > \frac{2}{\pi N}.
+    \frac{2}{\pi}c.
 \]
-Which is different from the paper.
+We now multiply by the normalization factors we dropped and get
+\[
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}\frac{2}{\pi}c \geq \frac{\pi}{\sqrt{2^{n-1}}}\sqrt{c}.
+\]
+Which I think is right?
+
 
 
 \end{document}
