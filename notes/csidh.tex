@@ -246,10 +246,17 @@ Recall that we chose \( n \) so that \( n \) was minimal with \( 2^n > cN \) so 
 \]
 We now multiply by the normalization factors we dropped and get
 \[
-    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}\frac{2}{\pi}c \geq \frac{\pi}{\sqrt{2^{n-1}}}\sqrt{c}.
+    \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{X}}\frac{2}{\pi}c 
+    \geq \frac{1}{\sqrt{2^n}}\frac{1}{\sqrt{2c}}\frac{2}{\pi}c 
+    =\frac{1}{\pi\sqrt{2^{n-1}}}\sqrt{c}.
 \]
-Which I think is right?
-
+Which doesn't seem right because half the Fourier coefficents are bounded from below by this expression which means that the original function has norm
+\[
+	\frac{2^n}{2}\left(\frac{1}{\pi\sqrt{2^{n-1}}}\sqrt{c} \right)^2
+	=\frac{1}{\pi}c
+\]
+so for sufficiently large values of \( c \) the function will have norm greater than \( 1 \).
+But the normalization constant \( X \) was chosen so the function has norm 1.
 
 
 \end{document}
