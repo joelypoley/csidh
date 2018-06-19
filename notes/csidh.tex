@@ -131,7 +131,7 @@ We start with two functions \( f, g: \Z / N\Z \to ?? \) such that
 for some \( s \in \Z / N\Z \).
 We then choose \( n \in \N \) minimal such that \( 2^n > cN \) where \( c \) is constant to be chosen later which will affect the probability of success. The paper describes how you can set up the quantum state
 \[
-    \frac{1}{\sqrt{2^{n}}} \sum_{x=0}^{2^n-1} \left( \ket{0}\ket{x}\ket{f(x \bmod{N})} + \ket{1}\ket{x}\ket{g(x \bmod{N})} \right).
+    \frac{1}{\sqrt{2^{n+1}}} \sum_{x=0}^{2^n-1} \left( \ket{0}\ket{x}\ket{f(x \bmod{N})} + \ket{1}\ket{x}\ket{g(x \bmod{N})} \right).
 \]
 {
 \color{red} In the paper the sum is up to \( 2^n \) and the normalization is \( \frac{1}{2^{(n+1) / 2}} \) which has to be wrong because the sum of the squares of the amplitudes is not 1.
